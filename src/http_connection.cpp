@@ -83,6 +83,11 @@ void HttpConnection::async_read(ReadHandler callback)
                         boost::asio::placeholders::bytes_transferred)));
 }
 
+bool HttpConnection::get_buffer_empty()
+{
+    return pending_write_buffers_.empty() && pending_write_resources_.empty() && !write_in_progress_;
+}
+
 void HttpConnection::write_and_clear(std::vector<unsigned char>& data)
 {
     std::shared_ptr<std::vector<unsigned char>> buffer(

@@ -66,6 +66,8 @@ public:
     void write(const std::vector<boost::asio::const_buffer>& buffer,
                ResourcePtr resource);
 
+    bool get_buffer_empty();
+
 private:
     void handle_read(const char* begin, const char* end);
     void handle_read_raw(ReadHandler callback,
